@@ -1,0 +1,32 @@
+<eww>
+  <includes>
+  </includes>
+
+  <definitions>
+    <def name="tile">
+      <box orientation="v" space-evenly="false" halign="center" valign="center">
+        <box class="subtitle icon mb-3">{{ icon }}</box>
+        <box class="">{{ line1 }}</box>
+        <box class="">{{ line2 }}</box>
+      </box>
+    </def>
+  </definitions>
+
+  <variables>
+    <script-var name="weather_temp" interval="30m">weather-report -m lfqq | grep Temperature | awk '{print $2}'</script-var>  
+    <script-var name="default_sink_vol" interval="200ms">amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d "%"</script-var>  
+  </variables>
+
+  <windows>
+    <window name="test" focusable="true">
+      <geometry height="1100px" width="500px" />
+      <widget>
+        <box>
+          {{ default_sink_vol}}
+          <tile icon="" line1="{{ weather_temp }}" line2="°C" />
+          <tile icon="" line1="{{ default_sink_vol }}" line2="" />
+        </box>
+      </widget>
+    </window>
+  </windows>
+</eww>
