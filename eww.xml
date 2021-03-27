@@ -3,10 +3,20 @@
   </includes>
 
   <definitions>
+    <!-- script-vars cannot be passed in defined-attribute (line1 in this example) -->
     <def name="tile">
       <box orientation="v" space-evenly="false" halign="center" valign="center">
         <box class="subtitle icon mb-3">{{ icon }}</box>
         <box class="">{{ line1 }}</box>
+        <box class="">{{ line2 }}</box>
+      </box>
+    </def>
+
+    <!-- obviously, this would work but definitions become pointless if not reusable -->
+    <def name="would-work-volume-only-tile">
+      <box orientation="v" space-evenly="false" halign="center" valign="center">
+        <box class="subtitle icon mb-3">{{ icon }}</box>
+        <box class="">{{ default_sink_vol }}</box>
         <box class="">{{ line2 }}</box>
       </box>
     </def>
@@ -22,11 +32,12 @@
       <geometry height="1100px" width="500px" />
       <widget>
         <box>
-          {{ default_sink_vol}}
+          {{ default_sink_vol}} <!-- this will be refreshed -->
           <tile icon="" line1="{{ weather_temp }}" line2="°C" />
-          <tile icon="" line1="{{ default_sink_vol }}" line2="" />
+          <tile icon="" line1="{{ default_sink_vol }}" line2="" /> <!-- this wont -->
         </box>
       </widget>
     </window>
   </windows>
 </eww>
+J
