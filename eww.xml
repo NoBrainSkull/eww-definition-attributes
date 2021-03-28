@@ -8,7 +8,6 @@
       <box orientation="v" space-evenly="false" halign="center" valign="center">
         <box class="subtitle icon mb-3">{{ icon }}</box>
         <box class="">{{ line1 }}</box>
-        <box class="">{{ line2 }}</box>
       </box>
     </def>
 
@@ -17,7 +16,6 @@
       <box orientation="v" space-evenly="false" halign="center" valign="center">
         <box class="subtitle icon mb-3">{{ icon }}</box>
         <box class="">{{ default_sink_vol }}</box>
-        <box class="">{{ line2 }}</box>
       </box>
     </def>
   </definitions>
@@ -33,11 +31,10 @@
       <widget>
         <box>
           {{ default_sink_vol}} <!-- this will be refreshed -->
-          <tile icon="" line1="{{ weather_temp }}" line2="°C" />
-          <tile icon="" line1="{{ default_sink_vol }}" line2="" /> <!-- this wont -->
+          <tile icon="" line1="{{ weather_temp }}" />
+          <tile icon="" line1="{{ default_sink_vol }}" /> <!-- this wont -->
         </box>
       </widget>
     </window>
   </windows>
 </eww>
-J
